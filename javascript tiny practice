@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>算法小练习</title>
+</head>
+<body>
+	<script>
+		//题设：函数fn传入一个数字型参数n，返回一个数组，数组含n个不重复随机整数，整数取值范围-->[2,32]
+		function arrCreat(n) 
+		{
+			var arrFinal=[];//定义最终返回的数组
+			var arr=new Array();//定义一个[2,32]的完整数组
+			for(let i=2;i<33;i++)
+				{
+					arr[i]=i;
+				}
+
+			for(let i=0;i<n;i++)
+			{
+				randomNum=parseInt(Math.random()*30+3);//定义一个(3,33)内的整数随机数
+
+				while(true)
+				{
+					if (arr[randomNum]) 
+					{
+						arrFinal[i]=arr[randomNum];
+						arr.splice(randomNum,1);
+						break;
+					}else
+					{
+						randomNum=parseInt(Math.random()*30+3); //while-if 循环分支结构	
+					}
+				}
+			}
+			
+			return arrFinal;
+		}
+
+		console.log(arrCreat(5));//test
+		console.log(arrCreat(10));//test
+		
+	</script>
+
+</body>
+</html>
