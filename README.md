@@ -1,2 +1,1 @@
-# babyzhn
-practice
+just for personal practice of coding!
