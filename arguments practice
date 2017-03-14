@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>arguments 对象</title>
+</head>
+<body>
+<div style="background-color: red;height: 100px"></div>
+	<script>
+	//arguments -->可变参数、不定参-->参数数组
+	function arguLength(){
+		// console.log(arguments.length);
+		// return arguments.length;
+		var sum=0;
+		for(i in arguments){
+
+			sum+=arguments[i];
+		}
+		return sum;
+	}
+	console.log(arguLength(1,2,3,7,9,10))
+
+	function showArguments(){
+		console.log(arguments);
+		console.log(typeof arguments);
+		console.log(arguments.length);
+	}//--->arguments 是传入参数形成的关于参数列表的数组
+	showArguments(3,2,1);
+	showArguments();
+
+	console.log(showArguments());//--->控制台打印函数的返回值时，函数会执行一次--->控制台打印命令导致函数的执行
+
+	function css(obj,name,value){
+		var obj=document.getElementsByTagName(obj);
+		if (arguments.length==2) 
+		{
+			return obj[0].style[name];
+		}else{
+			for (var i = obj.length - 1; i >= 0; i--) 
+			{obj[i].style[name]=value;}
+		}
+		
+	}
+	var a=css('div','backgroundColor');
+	var b=css('div','width','300px');
+	console.log(a);							//jq css()方法 仿写
+	</script>
+</body>
+</html>
