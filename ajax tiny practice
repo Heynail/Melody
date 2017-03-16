@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>new ajax</title>
+</head>
+<body>
+	<input type="button" id="btn" value='dblclick'>
+	<div id="oDiv" style="width: 100px;height: 100px;background-color: yellow;"></div>
+	<script>
+	//ajax
+	function ajax(url,fnScc,fnFail)
+	{	
+		var myAjax;//声明变量存储ajax对象
+		if (window.XMLHttpRequest) 
+		{
+			myAjax=new XMLHttpRequest();
+		}else{
+			myAjax=new ActiveXObject('Microsoft.XMLHTTP') ;
+		}//if-else 选择出可用的ajax对象
+		console.log(myAjax);//测试对象结果
+
+		myAjax.open('GET',url+'?='+parseInt(Math.random()*1000),true);
+		//ajax组装
+		myAjax.send();
+		//ajax发送
+		myAjax.onreadystatechange=function()//ajax对象时时触发、调用
+		{
+			if (myAjax.readyState==4) //ajax对象解析后
+			{
+				if (myAjax.status==200) //ajax对象解析且请求成功后
+				{	
+					var res=myAjax.responseText;//存储响应文本
+					console.log(res);//断点测试
+					fnScc(res);
+				}else
+				{
+					fnFail();
+				}
+			}
+		}
+	}
+	var btn=document.getElementById('btn');
+	var oDiv=document.getElementById('oDiv');
+	btn.ondblclick=function()//双击事件关联事件处理器
+	{
+		ajax('test.txt',function(answer)//事件处理器触发ajax
+		{
+		oDiv.innerText=answer;
+		alert('ok')
+		},function(){
+		window.alert('can not read the message');//失败就弹出失败警示框
+		});
+	} 
+	</script>
+</body>
+</html>
