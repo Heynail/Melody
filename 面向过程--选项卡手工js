@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>面向对象编程练习</title>
+	<style>
+		.card div{
+			width: 200px;
+			height: 200px;
+			/*display: none;*/
+			background-color: green;
+			outline: 1px solid;
+		}
+	</style>
+</head>
+<body>
+	<hr>
+	<div class="card" id="card">
+		<h5>选项卡</h5>
+		<button>新闻</button>
+		<button>图片</button>
+		<button>声音</button>
+		<button>广播</button>
+		<div>news</div>
+		<div>picture</div>
+		<div>sound</div>
+		<div>voice</div>
+   <hr>
+	</div>
+	<script>
+  
+	//面向过程的选项卡
+
+			//选取相关元素
+		var divList=document.getElementById('card').getElementsByTagName('div');
+		var btnList=document.getElementById('card').getElementsByTagName('button');
+			//载入时的随机数
+		var randomNum=null;
+		
+		var timer=null;//定时器
+
+		function cardChange(){
+			randomNum=parseInt(Math.random()*4);//随机数赋值
+			for (var i = divList.length - 1; i >= 0; i--) {
+				divList[i].style.display='none';		//每次随机执行都干掉之前的样式设置
+				btnList[i].style.backgroundColor='#fff';
+			}
+			divList[randomNum].style.display="block"; 
+			btnList[randomNum].style.backgroundColor='yellow';//随机选取元素设置样式
+				//link mouseover to div
+			
+			for (var i = btnList.length - 1; i >= 0; i--) {
+				btnList[i].index=i;//设置index以便与div关联
+				btnList[i].onclick=function(){			//btn单击时触发函数
+					clearInterval(timer);//清除计时器
+					timer=setTimeout(cardChange,4000);//4秒后重启计时器
+					for (var i = btnList.length - 1; i >= 0; i--)
+					{
+						divList[i].style.display='none';
+						btnList[i].style.backgroundColor='#fff';//干掉所有样式
+					}
+					this.style.backgroundColor='yellow';
+					divList[this.index].style.display='block';//当前设置属性
+				}
+			}
+		}
+		cardChange();//立刻执行
+		timer=setInterval(cardChange,2000) //一秒后执行
+		console.log(timer);//测试timer是否成功
+
+
+	</script>
+</body>
+</html>
