@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组的随机排序</title>
+</head>
+<body>
+	<script>
+	var test=[2,33,4,5,1,3,7,88,9,443];//待测试的数组
+	
+	function randomArr(arr){
+		var random=null;//存储随机数
+		var test2=[];//存储随机排序后的数组
+		for (var i = arr.length - 1; i >= 0; i--) {
+			random=parseInt(Math.random()*(arr.length));
+			//产生一个取值范围[0,length-1]的随机数
+			console.log(random);//打印随机数
+			test2.push(test[random]);//新数组压入随机索引对应的值
+			arr.splice(random,1);//原数组删除随机索引对应的元素，length更新，随机数范围也对应更新
+		}
+		return test2;//返回新数组
+	}
+	console.log(randomArr(test));//打印新数组
+
+	</script>
+</body>
+</html>
