@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>理解参数</title>
+</head>
+<body>
+	<script>
+	function arg(a,b,c){
+		console.log(arguments);//-->Arguments对象且a已经被改变
+		console.log(typeof arguments);//原型是Object
+		console.log(arguments instanceof Array);//很像数组，但是不是数组的类
+		console.log(arguments.length);// 4
+		console.log(arguments[0]===a);//参数对象完全等于命名参数
+		arguments[0]='it is changed';//重新赋值外部参数
+		console.log(arguments[0]);
+		console.log(a,b,c);//外部参数被更改，且更改后的值被提升
+		//****************
+		arguments.length=6;//更改长度
+		for(i in arguments){
+			console.log(arguments[i]);
+		}
+		console.log(arguments);//对参数对象的元素没有影响
+	}
+
+	arg('周杰伦','刘德华','熊猫','吉他');
+	//console.log(arguments); //-->Error 不是全局属性
+	console.log(window.arguments); //-->undefined 不是全局属性
+
+	//总结：函数内部自动生成一个空的Arguments对象，外部传入参数时，第一次更新这个对象。
+	//总结：函数内部可以再次更新这个对象。
+	//总结：参数对象的元素和外部参数列表完全一一对应。
+	//总结：改变参数对象的长度不会产生undefined填充的元素。
+	</script>
+</body>
+</html>
