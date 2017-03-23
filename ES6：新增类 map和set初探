@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>map and set</title>
+</head>
+<body>
+	<script>
+	//es6新增的类：map,set
+	console.log(window.Map);//查看map构造函数
+	console.log(typeof Map);//基本数据类型--->function
+	console.log(Map instanceof Object);//查看参考对象--->true
+	console.log(Map instanceof Array);//查看是否是数组类--->false
+	var mapper=new Map();//新建空map
+	var mapper2=new Map([['name','hainan'],['age',24],['height',181]]);//新建map，初始化需要输入一个二维数组
+	console.log(mapper2);
+	//对比数组，更便捷
+	console.log(mapper2.get('name'));//访问map属性--->hainan
+	mapper2.set('sex','man');//设置map属性
+	console.log(mapper2);
+	mapper2.delete('age');//删除map属性
+	console.log(mapper2);
+	console.log(mapper2.entries);//entries 对象的构造函数
+	//console.log(entries);//entries 不是全局构造函数
+	console.log(mapper2[0]);//无法通过索引访问
+
+	//分割线
+	//es6:set
+	console.log(window.Set);//查看map构造函数
+	console.log(typeof Set);//基本数据类型--->function
+	console.log(Set instanceof Object);//查看参考对象--->true
+	console.log(Set instanceof Array);//查看是否是数组类--->false
+	var setter=new Set();//新建空set
+	var setter2=new Set([1,2,3,4,4,3,1,5,6,8,7,'abc']);
+	//新建并输入一个元素互异一维数组--->1,2,3,4,5,6,8,'abc',99 :运算被提前了
+	console.log(setter2);
+	//console.log(setter2.get(4));//访问set--->Error：没有get方法
+
+	//setter2.set(11);//set方法新增set属性--->Error:没有set方法
+	console.log(setter2);
+	console.log(setter2.entries);//
+	setter2.add(99);//add方法增加set属性
+	console.log(setter2);
+	setter2.delete(7);//delete方法删除set属性
+	console.log(setter2);
+
+	console.log(setter2[0]);//无法按索引访问值
+
+	console.log(setter2.size,setter2['size']);//set通过size属性来计算属性长度
+
+	//总结：map,set是es6新增数据类型，本质是特殊的对象。
+	//总结：map输入二维数组，返回的是 名=>值 对构成的对象，且不能通过索引访问 名=>值 对
+	//总结：set输入互异的一维数组，返回的是 值 构成的对象，且不能通过索引访问
+	//总结：两者均有size来统计对象长度，均有entries构造函数
+	//总结：map 的方法有增、删、查 set的方法有增、删
+	
+
+
+	</script>
+</body>
+</html>
