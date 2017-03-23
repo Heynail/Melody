@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组翻转方法猜想</title>
+</head>
+<body>
+	<script>
+		var test=[3,2,1,4,5,6,7,8,4,3,3,4,2,1];
+		function upAndDown(arr){
+			var newArr=[];
+			for (var i = arr.length - 1,j=0; i >= 0; i--,j++) {
+				newArr[j]=arr[i];
+			}
+			return newArr;
+		}
+
+		function firstToLast(arr){
+			var newArr=[]
+			for (var i = arr.length - 1; i >= 0; i--) {
+				newArr[arr.length-1-i]=arr[i];
+			}
+			return newArr;
+		}
+
+		function aTurnZ(arr){
+			var newArr=[];
+			for (var i = arr.length - 1; i >= 0; i--) {
+				let temp=arr.pop();
+				newArr.push(temp);
+			}
+			return newArr;
+		}
+		var ans1=upAndDown(test);
+		var ans2=firstToLast(test);
+		var ans3=aTurnZ(test);
+		console.log(ans1,ans2,ans3);
+
+	</script>
+</body>
+</html>
