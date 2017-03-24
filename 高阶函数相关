@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>高阶函数</title>
+</head>
+<body>
+		<script>
+		//高阶函数是将函数可以作为参数调用的函数
+		function exm(arg1,arg2,fn1){	
+			return fn1(arg1)+fn1(arg2); //将要调用的函数直接作为参数传进来使用
+		}
+		var ans=exm(30,40,function(arg){
+			return arg*arg;
+		})
+		console.log(ans);//-->2500
+										
+		function exm2(a,b){				//普通调用外部函数
+			return fn1(a)+fn1(b);
+		}
+		var fn1=function(){
+			return arguments[0]*arguments[0];
+		}
+		var ans2=exm2(20,10,false);
+		console.log(ans2);//--->500
+		//一些内置的高阶函数
+		//Array的map()--->自带遍历，调用需传入函数
+		var arr=[23,32,11,54,34,90];
+
+		var arr2=arr.map(function(a){
+			return a*a+1;
+		})
+		console.log(arr);
+		console.log(arr2);
+		//map()方法实现的内部结构猜想
+		function oMap(arr,fn){
+			var newArr=[];//新数组初始化
+			for (var i = arr.length - 1; i >= 0; i--) {
+				newArr.unshift(fn(arr[i]));
+			}
+			return newArr;
+		}
+		var ans3=oMap(arr,function(arg){
+			return arg*2-1;
+		})
+		console.log(ans3);//--->功能一致
+		//数组reduce()方法--->消消乐功能，需传入函数对数组头两个元素操作
+		var arr3=arr.reduce(function(arg1,arg2){
+			return arg1*2+arg2;
+		})
+		console.log(arr3);//-->1710,reduce()衰减数组元素-->直到衰减完毕得到一个累积的值
+		//reduce()方法内部实现猜想
+		function oReduce(arr,fn){
+			var ans4=fn(arr[0],arr[1]);
+			for(let i=2;i<arr.length;i++){
+				ans4=fn(ans4,arr[i]);
+			}
+			return ans4;
+		}
+		var arr4=oReduce(arr,function(arg1,arg2){
+			return arg1*2+arg2;
+		});
+		console.log(arr4);//-->1710,与reduce()方法结果一致
+
+		</script>
+
+
+
+</body>
+</html>
