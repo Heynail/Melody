@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>箭头函数</title>
+</head>
+<body>
+	<script>
+		//es6新增函数写法，类似匿名函数的简洁写法，又和匿名函数有些重要区别
+		//原来的函数:命名函数、匿名函数
+		var aFn=(x)=>(x*2+3);
+		var ans1=aFn(9);
+		console.log(ans1);//-->21 
+		//试比较匿名函数
+		var afn=function(x){
+			return x*2+3;
+		}
+		var ans2=afn(9);
+		console.log(ans2);//-->21
+		//箭头函数结构
+		//1、箭头操作符：=>   
+		//2、左侧参数列表
+		//3、右侧返回值表达式
+		//总结：--->箭头是二元操作符，左侧要求参数列表，右侧返回值表达式
+		//--->省略了function关键字、大括号
+		//--->this始终指向外层调用者
+	</script>
+</body>
+</html>
