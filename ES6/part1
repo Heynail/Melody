@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ES6:Lesson 1</title>
+</head>
+<body>
+	<script>
+		//what?
+			//es6 =>标准
+			//js  =>实现
+		//--------------------------------------
+		//how?
+			//es6=>es5:
+				//babel/traceur(js编写的编译器)
+				//在线编译
+				//在node中使用
+		//--------------------------------------
+		//声明变量
+			//before: var =>global / function
+			//now:var、let =>var global,let block
+			//补充：全局变量、函数(局部)变量、块变量
+			//		全局作用域、局部作用域、块级作用域
+			//let 特性：不允许重复声明,否则报错
+		//--------------------------------------
+		//声明常量
+			//const:不可重复声明、不可重新赋值，不可单独声明
+			//用途：防止意外修改值	
+		//--------------------------------------
+		//新型字符串定义及使用
+			//before: 'string' 配合 + 拼接符 =>间接输出	
+			//now: ` string ` 配合 ${变量名} =>直接输出
+		//--------------------------------------
+		//新型变量赋值方法及使用
+			//结构赋值和模式匹配
+			//before:一句一句赋值 var a=3,b=4,c=6;
+			//now:一次完成多个变量的赋值 
+				//Array: var [a,b,c]=[3,4,5]
+				//Json: var {a,b,c}={a:33,c:44,b:98}
+			//=>本质就是值列表和名列表按模式映射值
+			//用途：解析数据更方便
+
+			//-----------------------------------
+			
+			let a=12;
+			//let a=3;
+			console.log(a);//=>err
+			var b=10;
+			var b=20;
+			console.log(b);//=>20
+
+			//-----------------------------------
+			
+		//const ok;//=>err
+		const op=100;
+		//const op=99;//=>err
+		
+		var str1='abc';
+		var str2=`kfc`;
+		console.log('before: '+str1+' is this');
+		console.log(`now ${str2} is this`);//==>well done
+
+			//-----------------------------
+				//数组的按索引映射值
+				var [jg1,jg2,jg3]=[10,12,16];
+				console.log(jg1,jg2,jg3);//=>10,12,16
+				//json的按名映射值
+			var {js1,js2,js3}={js1:33,js3:55,js2:35};
+			console.log(js1,js2,js3);//=>33,35,55
+				//数组的按索引映射值(对象)
+				var arr=[{name:'hainan'},{age:24},{sex:'man'}];
+			//var [names,ages,sexs]=arr;
+			var [{name},{age},{sex}]=arr;
+			console.log(name,age,sex);//=>object
+				//json的按名映射值(数组)
+				var json={ajs:[1,2,3],bjs:[4,3,2],cjs:[1,2,2]};
+				var {ajs,bjs,cjs}=json;
+				console.log(ajs,bjs,cjs);//=>Array
+				//二次映射
+			var [n1,n2,n3]=ajs;
+			console.log(n1,n2,n3);
+				//两种空映射
+				var morenzhi={};
+				var {test}=morenzhi;
+				console.log(test);//=>undefined
+
+				var morenzhi2={key:20};
+				var {test3}=morenzhi2;
+				console.log(test3);//=>undefined
+				
+				//有默认值的空映射
+			var{test2=10}=morenzhi;
+			console.log(test2);//=>10
+				//有默认值但是会被覆盖的有效映射
+				var {key=13}=morenzhi2;
+				console.log(key);//=>20
+			//-----------------------------
+
+	</script>
+</body>
+</html>
