@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>es6 3</title>
+</head>
+<body>
+	<script>
+		//arrow function
+		var arrowFn=(x)=>(x*3-1);
+		var normalFn=function(n){n*3-1};
+		console.log(arrowFn,normalFn);
+
+		console.log(arrowFn(),normalFn());
+		console.log(typeof arrowFn,typeof normalFn);
+		console.log(arrowFn(9),normalFn(9));
+
+		//var arrowFn2=(x)=>(x*4+2);
+		var arrowFn2=(x)=>{return x*4+2};
+		console.log(arrowFn2);
+		console.log(arrowFn2(9));
+		//notice: =>this 指向问题：始终指向真实调用者
+		//		  =>arguments对象不能使用
+	//----------------------------------------------------
+		//对象定义语法简洁：只定义值
+		var name='hainan';
+		var age=24;
+		var sex='man'				//外部定义变量
+		var newObj={
+			name,
+			age,					//直接调用外部变量做对象元素
+			sex,
+			// showname(){			
+			// 	return this.name;
+			// }
+			showage(){
+				return this.age;	//命名函数做方法，没有function关键词
+			}
+		}
+		var ans=newObj.showage();
+		console.log(ans);
+	//----------------------------------------------------
+		//面向对象
+		//before：ES5并非真正的面向对象，其采用 原型-->构造函数-->实例
+		//原型和实例没有本质区别，实例参考原型挂载属性和方法，构造函数的函数名表明要其参考哪种原型来挂载新的实例：Array是构造函数的函数名，Array同时表明了参考的是数组Array原型
+		//总结：不是真正的面向对象，原型-->构造函数-->实例 的模式十分勉强
+		//now:ES6是真正的面向对象，其采用 Class-->构造函数-->实例
+		//构造函数constructor从属于class,是class的构造器。class是对对象的概括，是实例的创建机器
+			//原型-实例：样品和产品
+			//类-实例：机器和产品
+		class person{			//class classname 关键字声明类 类名
+			constructor(name='abc',age=20){	//构造器=>构造函数:挂载属性
+				this.name=name;
+				this.age=age;
+			}
+			showName(){
+				return 'the name is '+this.name ;	//方法=>普通函数
+			}
+			showAge(){
+				return 'the age is '+this.age ;
+			}
+		}
+
+		var person1=new person();
+		console.log(person1);// => person {name: "abc", age: 20}
+		var person2=new person('hainan',24);
+		console.log(person2);//=> person {name: "hainan", age: 24}
+	//------------------------------------------------------------------
+		//继承
+		// class worker{
+		// 	constructor(job='cook',skill='food',fee=4000){
+		// 		this.job=job;
+		// 		this.skill=skill;
+		// 		this.fee=fee;
+		// 	}
+		// 	showJob(){
+		// 		return this.job;
+		// 	}
+		// 	showSkill(){
+		// 		return this.skill;
+		// 	}
+		// }
+		// var worker1=new worker();
+		// var worker2=new worker('editor','writing',4200);
+		// console.log(worker1,worker2);
+		class worker extends person 		//class 子类 extends 父类{}
+		{ 	
+			constructor(job='editor',skill='writing')
+			{
+				super();	//super()方法使新构造器不覆盖继承来的构造器
+				this.job=job;
+				this.skill=skill;
+			}
+			showJob(){
+				return this.job;
+			}
+			showSkill(){
+				return this.skill;
+			}
+		};
+		var worker3=new worker();
+		console.log(worker3);
+		//---------------------------------------------------------------
+
+	</script>
+</body>
+</html>
