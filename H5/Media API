@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>多媒体API</title>
+</head>
+<body>
+	<video src="http://k.youku.com/player/getFlvPath/sid/0491014538840125a3a61_00/st/mp4/fileid/030020010058952DC93AAC07FCD4757A2DF283-EA3F-8E5C-C6B8-933E018BE35F?K=58100257de3fd3db261f9945&sign=955dd9e03072b8d66d778bd430aed95b&hd=1&myp=0&ts=76.733&ypp=0&ep=ciadG0mMUssD7SvbiD8bYn3hJXEOXP4J9h%2BHgdJjALshQOG6m0qizp7BP4xCEY9qBiYBFeyAqaSRaEgXYYUyqh4Q1zutSvqT%2BILr5aRQx%2BUAZxFEB87SwlSeRjD1&ctype=12&ev=1&token=0504&oip=827175729" id="vd" controls="" autoplay="">abc</video>
+	<audio src="" id="ad">123</audio>
+	<div id="showMsg"></div>
+	<div id="showMsg2"></div>
+	<script>
+		var videos=document.getElementById('vd');
+		var audios=document.getElementById('ad');
+		var msg=document.getElementById('showMsg');
+		var msg2=document.getElementById('showMsg2');
+		console.log(videos);
+		console.log(audios);//press f12 to check the object
+		console.log(videos.outerHTML,typeof videos.outerHTML);
+		//--------------------------------------------------------
+		
+		//check networkState 
+		console.log(videos.networkState,typeof videos.networkState);
+		//=>3,number =>0:empty 1:idle 2:loading 3:no source 
+		console.log(videos.src,typeof videos.src);
+		//=>get src
+		//check currentSrc currentTime duration playbackRate
+		videos.onplaying=function(){
+			var timer=null;
+			clearInterval(timer);
+			function repeat(){
+			// console.log(videos.currentSrc,typeof videos.currentSrc);
+			// console.log(videos.currentTime,typeof videos.cu);	
+			msg.innerText='当前时间：'+videos.currentTime+' 当前地址'+videos.currentSrc+' 视频时长：'+videos.duration+' 当前速率为：'+videos.playbackRate+'x 倍';
+			}
+			timer=setInterval(repeat,1000);
+		}
+		
+
+	</script>
+</body>
+</html>
