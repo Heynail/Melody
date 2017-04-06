@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>变量、常量、函数</title>
+</head>
+<body>
+    <script>
+            //变量、常量、函数
+            // var abc='abc';
+            // const abc='123';
+            // console.log(abc);
+            // const name='name';
+            // var name='age';
+            // console.log(name);
+        //err=>常量和变量共用一个命名空间
+            
+            console.log(test);
+            function test(){
+                console.log('test here');
+
+            }//函数不会出现函数声明的提升=>函数在定义域内均有指向
+
+            function abc(){
+                console.log('abc here')
+            }
+            console.log(abc);//'function'
+            var abc='变量';
+            console.log(abc);//'变量'=>函数与变量的命名空间不同，但指向时有优先级：变量大于函数名
+
+            //定义函数
+            function named(){
+                console.log('this is named function');//命名函数=>函数名指向函数体
+            }
+            var uname=function(){
+                console.log('this is unamed function');//变量函数=>匿名函数赋值给变量使用变量命名空间=>变量名指向函数体
+            }
+            (function(){
+                console.log('this is the closed function ')//直接函数=>函数体直接使用，类似字符串、数字的直接量
+            });
+            //函数名和函数体的关系
+            function uuu(){
+                console.log('uuu');
+
+            }
+            function uuu(){
+                console.log('nnn');
+            }
+            console.log(uuu);
+            uuu();//nnn=>函数名像变量一样被重新赋值了
+            // const uuu='mmm';
+            // console.log(uuu);//err=>有命名冲突
+            var uuu='kkk';
+            console.log(uuu);//kkk=>变量和函数没有命名冲突，即使用不同的命名空间，且变量的优先级比函数优先级高
+            //总结：常量和变量、函数都有命名冲突，常量的命名空间是变量和函数命名空间的并集
+            //总结：变量和函数没有命名冲突，独立的命名空间，变量的指向优先级高
+    </script>
+</body>
+</html>
