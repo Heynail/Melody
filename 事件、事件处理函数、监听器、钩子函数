@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件、事件处理函数、监听器、钩子函数</title>
+</head>
+<body>
+	<button>click one</button>
+	<button>click two</button>
+	<script>
+	//理解事件、事件处理函数、钩子函数、回调函数、Dom 和 Js在其中扮演的角色
+		var btnList=document.getElementsByTagName('button');
+		btnList[0].onclick=function(){
+			console.log('how are you !');
+			console.log(this.onclick);//function
+		}
+		btnList[1].addEventListener('click',function(){
+			console.log('i am fine,thank you !');
+			console.log(this.onclick);//null
+		})
+	// js获取dom数据的两种方式
+	// 	js派函数监听事件	=>监听函数就是所谓的钩子函数=>函数钩取事件：函数主动找事件=>钩子函数
+	// 	js预留函数给dom事件，dom事件调用js预留的函数 =>事件派发给函数：事件调用函数=>回调函数
+	// 打个形象的比喻：书店、你、你小表弟、书店美女店员
+	// 	书店暂时没有你要的书，咋办呢？ 1）你无耻的派了你小表弟在书店24小时蹲守，有人送书来，你表弟就去
+	// 	看下，一旦来了，你表弟就告诉你，并且帮你买下来
+	// 	2）你留下你的号码给美女店员，让她有书就通知你
+	// 	第一种：你就是js，你表弟就是你派出去的监听器，监听函数就是表弟非常机智的买下了这本书，这个过程没有美女店员的事
+	// 	第二种：你依然是js，美女店员是事件，你的号码就是函数，把号码留给店员的过程就是把函数注入到事件当中的过程，
+	// 	美女打电话通知你的过程就是回调，所以你注入的函数就是回调函数，这个过程没有你表弟的事
+	// 	dom通过事件通知js的过程即是回调
+	// 	js通过监听函数得知事件的过程即是钩取
+	// 	钩子函数和回调函数都是事件处理函数
+	</script>
+</body>
+</html>
